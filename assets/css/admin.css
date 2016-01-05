@@ -85,3 +85,13 @@
 .wp-tw-tabs .wp-tw-tab-content.tab-active {
   display: block;
 }
+/* line 78, admin.scss */
+.wp-tw-tabs .wp-tw-tab-content::after {
+  clear: both;
+  content: " ";
+  display: block;
+}
+/* line 82, admin.scss */
+.wp-tw-tabs .tabbed-widget-settings {
+  clear: both;
+}

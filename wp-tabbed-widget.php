@@ -205,6 +205,7 @@ class WP_Tabbed_Widget extends WP_Widget {
                     <?php
                 } ?>
             </select>
+            <span class="spinner"></span>
             <div class="tabbed-widget-settings">
                 <?php
 

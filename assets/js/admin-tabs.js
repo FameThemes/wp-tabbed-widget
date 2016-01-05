@@ -7,8 +7,10 @@ WP_Tabbed_Widget = function( tabs ){
     //var tabs =  jQuery( widget_id );
 
     function tab_content_change( $context ){
+
         $context.on( 'change', '.widget_type', function(){
             var widget = jQuery( this).val();
+            jQuery( '.spinner', $context).addClass( 'is-active' );
             jQuery.ajax( {
                 data: {
                     widget: widget,
@@ -20,6 +22,8 @@ WP_Tabbed_Widget = function( tabs ){
                 dataType: 'html',
                 success: function( settings_html ){
                     jQuery( '.tabbed-widget-settings', $context ).html( settings_html );
+                    jQuery( '.spinner', $context).removeClass( 'is-active' );
+                    jQuery( window).trigger( 'resize' );
                 }
             } );
 
@@ -131,6 +135,7 @@ WP_Tabbed_Widget = function( tabs ){
             parent.remove();
             var l = jQuery( '.wp-tw-nav li.wp-tw-title', tabs ).length;
             set_active_to_index( 0 );
+            jQuery( window).trigger( 'resize' );
         }
     } );
 
@@ -149,6 +154,7 @@ WP_Tabbed_Widget = function( tabs ){
         var tab_content = jQuery(  jQuery( '.settings-tpl', tabs).html() );
         tab_content.attr( 'id', tab_id );
         jQuery( '.wp-tw-tab-contents', tabs).append( tab_content );
+        jQuery( window).trigger( 'resize' );
         tab_content_change( tab_content );
         update_value( new_li, tab_content );
         new_li.trigger( 'click' );

@@ -75,6 +75,12 @@
         &.tab-active {
             display: block;
         }
+        &::after {
+            clear: both; content:  " "; display: block;
+        }
+    }
+    .tabbed-widget-settings {
+        clear:  both;
     }
 
 }
