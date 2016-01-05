@@ -14,8 +14,6 @@ define( 'WP_TABBED_WIDGET', trailingslashit( plugin_dir_path( __FILE__) ) );
 
 
 
-
-
 class WP_Tabbed {
 
     function __construct(){
@@ -24,6 +22,11 @@ class WP_Tabbed {
     }
 
     public static function ajax_form() {
+
+        $nonce = isset( $_REQUEST['_nonce'] ) ? $_REQUEST['_nonce'] : '';
+        if ( ! wp_verify_nonce( $nonce, 'wp-tabbed-widget' ) ) {
+            die( 'Security check' );
+        }
 
         $widget =  $_REQUEST['widget'];
         echo self::get_form_settings( $widget );
@@ -86,20 +89,19 @@ class WP_Tabbed_Widget extends WP_Widget {
         );
     }
 
-    public function item( $name, $value = array(), $closed = true ){
-
-    }
-
+    /**
+     * Widget admin settings form
+     *
+     * @param array $instance
+     */
     public function form( $instance ) {
         $this_widget = get_class( $this );
         global $wp_widget_factory;
-
 
         wp_enqueue_script('jquery');
         wp_enqueue_script(' jquery-ui-sortable');
         wp_enqueue_script('wp-tabbed-admin', WP_TABBED_WIDGET_URL.'assets/js/admin-tabs.js', array( 'jquery' ), '1.0', 'true' );
         wp_enqueue_style('wp-tabbed-admin', WP_TABBED_WIDGET_URL.'assets/css/admin.css' );
-
 
         wp_localize_script( 'wp-tabbed-admin', 'WP_Tabbed_Widget_Settings', array(
             'id'      => $this->id_base,
@@ -157,9 +159,15 @@ class WP_Tabbed_Widget extends WP_Widget {
                 new WP_Tabbed_Widget( "#<?php  echo esc_js( $id ); ?>" );
             } );
         </script>
-    <?php
+        <?php
     }
 
+    /**
+     * Tab title settings template
+     *
+     * @param string $title
+     * @return string
+     */
     function _tab_title( $title = '' ){
         if ( $title == '' ){
             $title = __( 'Untitled', 'wp-tabbed-widget' );
@@ -171,6 +179,13 @@ class WP_Tabbed_Widget extends WP_Widget {
                 </li>';
     }
 
+    /**
+     * Get tab content setting template
+     *
+     * @param string $widget_class
+     * @param array $data
+     * @return string
+     */
     function _tab_content( $widget_class = '', $data = array() ){
         global $wp_widget_factory;
         $this_widget = get_class( $this );
@@ -222,56 +237,63 @@ class WP_Tabbed_Widget extends WP_Widget {
             'title'             => '',
             'tabs'              => array(),
         ) );
+
+        wp_enqueue_style('wp-tabbed', WP_TABBED_WIDGET_URL.'assets/css/tabbed.css' );
+        wp_enqueue_script( 'jquery' );
+        wp_enqueue_script('wp-tabbed', WP_TABBED_WIDGET_URL.'assets/js/tabbed.js', array( 'jquery' ), '1.0', true );
+
         ?>
-        <ul class="wp-tabbed-tabs">
-            <?php
-
-            foreach( $instance['tabs'] as $k => $data ) {
-                if ( ! isset ( $data['settings'] ) ) {
-                    $data['settings'] = array();
-                }
-
-                if ( ! isset( $data['settings']['title'] ) ) {
-                    $data['settings']['title'] = __( 'Untitled', 'wp-tabbed-widget' );
-                }
-
-                ?>
-                <li><a data-tab="tab-<?php echo esc_attr( $k ) ?>" href="#"><?php echo esc_html( $data['settings']['title'] ); ?></a></li>
+        <div class="wp-tabbed-tabs">
+            <ul class="wp-tabbed-nav">
                 <?php
 
-            }
+                foreach( $instance['tabs'] as $k => $data ) {
+                    if ( ! isset ( $data['settings'] ) ) {
+                        $data['settings'] = array();
+                    }
 
-            ?>
-        </ul>
-        <div class="wp-tabbed-contents">
-            <?php
-            global $wp_widget_factory;
-            foreach( $instance['tabs'] as $k => $data ) {
-                if ( ! isset ( $data['settings'] ) ) {
-                    $data['settings'] = array();
-                }
+                    if ( ! isset( $data['settings']['title'] ) ) {
+                        $data['settings']['title'] = __( 'Untitled', 'wp-tabbed-widget' );
+                    }
 
-                if ( isset( $data['settings']['title']  ) ) {
-                    unset( $data['settings']['title'] );
-                }
-
-                $widget_class = isset( $data['widget_class'] ) ? $data['widget_class'] : false;
-                echo '<div class="wp-tabbed-cont" data-tab-id="tab-'.esc_attr( $k ).'">';
-                if ( isset( $wp_widget_factory->widgets[ $widget_class ] ) ) {
-                    $wp_widget_factory->widgets[ $widget_class ]->widget( array(
-                        'before_widget' => '',
-                        'before_title' => '',
-                        'after_title' => '',
-                        'after_widget' => '',
-                    ),  $data['settings'] );
+                    ?>
+                    <li data-tab="tab-<?php echo esc_attr( $k ) ?>"><a  href="#"><?php echo esc_html( $data['settings']['title'] ); ?></a></li>
+                    <?php
 
                 }
-                echo '</div>';
 
                 ?>
-            <?php
-            }
-            ?>
+            </ul>
+            <div class="wp-tabbed-contents">
+                <?php
+                global $wp_widget_factory;
+                foreach( $instance['tabs'] as $k => $data ) {
+                    if ( ! isset ( $data['settings'] ) ) {
+                        $data['settings'] = array();
+                    }
+
+                    if ( isset( $data['settings']['title']  ) ) {
+                        $data['settings']['title'] = '';
+                    }
+
+                    $widget_class = isset( $data['widget_class'] ) ? $data['widget_class'] : false;
+                    echo '<div class="wp-tabbed-cont tab-'.esc_attr( $k ).'">';
+                    if ( isset( $wp_widget_factory->widgets[ $widget_class ] ) ) {
+                        $wp_widget_factory->widgets[ $widget_class ]->widget( array(
+                            'before_widget' => '',
+                            'before_title' => '<div class="tab-c-e-title">',
+                            'after_title' => '</div>',
+                            'after_widget' => '',
+                        ),  $data['settings'] );
+
+                    }
+                    echo '</div>';
+
+                    ?>
+                <?php
+                }
+                ?>
+            </div>
         </div>
         <?php
         echo $args['after_widget'];
@@ -310,7 +332,6 @@ class WP_Tabbed_Widget extends WP_Widget {
                     }
                 }
 
-
                 if ( isset( $wp_widget_factory->widgets[ $settings['widget_class'] ] ) ) {
                     $data = $wp_widget_factory->widgets[ $settings['widget_class'] ]->update( $data, array() );
                     $data[ 'isset' ] = 1;
@@ -330,9 +351,11 @@ class WP_Tabbed_Widget extends WP_Widget {
         // return $instance;
     }
 
-} // class Popular_Store
+} // class WP_Tabbed_Widget
 
-// register Foo_Widget widget
+/**
+ * Register WP_Tabbed_Widget widget
+ */
 function wp_register_tabbed_widget() {
     register_widget( 'WP_Tabbed_Widget' );
 }
@@ -343,66 +366,3 @@ add_action( 'widgets_init', 'wp_register_tabbed_widget' );
 
 
 
-
-
-
-
-
-
-
-
-
-
-// -------- JUST FOR DEBUG WILL REMOVE WHEN COMPLETED ----------------------
-
-// ==================for debug===============================
-if(!function_exists('st_help_screen_help')){
-    add_action( 'contextual_help', 'st_help_screen_help', 10, 3 );
-    function st_help_screen_help( $contextual_help, $screen_id, $screen ) {
-        // The add_help_tab function for screen was introduced in WordPress 3.3.
-        if ( ! method_exists( $screen, 'add_help_tab' ) )
-            return $contextual_help;
-        global $hook_suffix;
-        // List screen properties
-        $variables = '<ul style="width:50%;float:left;"> <strong>Screen variables </strong>'
-            . sprintf( '<li> Screen id : %s</li>', $screen_id )
-            . sprintf( '<li> Screen base : %s</li>', $screen->base )
-            . sprintf( '<li>Parent base : %s</li>', $screen->parent_base )
-            . sprintf( '<li> Parent file : %s</li>', $screen->parent_file )
-            . sprintf( '<li> Hook suffix : %s</li>', $hook_suffix )
-            . '</ul>';
-        // Append global $hook_suffix to the hook stems
-        $hooks = array(
-            "load-$hook_suffix",
-            "admin_print_styles-$hook_suffix",
-            "admin_print_scripts-$hook_suffix",
-            "admin_head-$hook_suffix",
-            "admin_footer-$hook_suffix"
-        );
-        // If add_meta_boxes or add_meta_boxes_{screen_id} is used, list these too
-        if ( did_action( 'add_meta_boxes_' . $screen_id ) )
-            $hooks[] = 'add_meta_boxes_' . $screen_id;
-        if ( did_action( 'add_meta_boxes' ) )
-            $hooks[] = 'add_meta_boxes';
-        // Get List HTML for the hooks
-        $hooks = '<ul style="width:50%;float:left;"> <strong>Hooks </strong> <li>' . implode( '</li><li>', $hooks ) . '</li></ul>';
-        // Combine $variables list with $hooks list.
-        $help_content = $variables . $hooks;
-        // Add help panel
-        $screen->add_help_tab( array(
-            'id'      => 'wptuts-screen-help',
-            'title'   => 'Screen Information',
-            'content' => $help_content,
-        ));
-        return $contextual_help;
-    }
-}
-/// ------------------------------
-
-/*
-$current = current_time( 'timestamp' );
-$day = 24*3600;
-
-$_day =  $current- $day;
-echo date_i18n( 'Y-m-d H:i:s', $_day );
-*/
