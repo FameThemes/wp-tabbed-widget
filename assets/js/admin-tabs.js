@@ -3,8 +3,8 @@
  */
 
 var WP_Tabbed_Widget;
-WP_Tabbed_Widget = function( widget_id ){
-    var tabs =  jQuery( widget_id );
+WP_Tabbed_Widget = function( tabs ){
+    //var tabs =  jQuery( widget_id );
 
     function tab_content_change( $context ){
         $context.on( 'change', '.widget_type', function(){
@@ -140,11 +140,13 @@ WP_Tabbed_Widget = function( widget_id ){
         var index = Math.floor( ( Math.random() * 100 ) + 1 );
         var tab_id = 'tab-'+index+ ( new Date().getTime() );
 
-        var new_li = jQuery( WP_Tabbed_Widget_Settings.title_tpl );
+        console.log( 'addnew' );
+
+        var new_li = jQuery( jQuery( '.title-tpl', tabs).html() );
         new_li.attr( 'data-for', tab_id );
         jQuery( '.wp-tw-nav', tabs).append( new_li );
 
-        var tab_content = jQuery( WP_Tabbed_Widget_Settings.tab_tpl );
+        var tab_content = jQuery(  jQuery( '.settings-tpl', tabs).html() );
         tab_content.attr( 'id', tab_id );
         jQuery( '.wp-tw-tab-contents', tabs).append( tab_content );
         tab_content_change( tab_content );
@@ -154,3 +156,18 @@ WP_Tabbed_Widget = function( widget_id ){
     } );
 
 };
+
+
+jQuery( document ).ready( function( $ ){
+
+    $( '.wp-tw-tabs').each( function(){
+        new WP_Tabbed_Widget( $( this ) );
+    } );
+
+    jQuery( document ).on( 'widget-added widget-updated', function( event, widget ){
+
+        $( '.wp-tw-tabs', widget ).each( function(){
+            new WP_Tabbed_Widget( $( this ) );
+        } );
+    } );
+} );

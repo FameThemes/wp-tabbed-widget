@@ -107,8 +107,8 @@ class WP_Tabbed_Widget extends WP_Widget {
             'id'      => $this->id_base,
             'untitled' => __( 'Untitled', 'wp-tabbed-widget' ),
             'nonce'   => wp_create_nonce( 'wp-tabbed-widget' ),
-            'tab_tpl'     => $this->_tab_content(),
-            'title_tpl'   => $this->_tab_title(),
+            //'tab_tpl'     =>    $this- >_tab_content(),
+            //'title_tpl'   => $this->_tab_title(),
         ) );
 
         $instance =  wp_parse_args( $instance, array(
@@ -131,7 +131,13 @@ class WP_Tabbed_Widget extends WP_Widget {
             <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $instance['title'] ); ?>">
         </p>
 
-        <div class="wp-tw-tabs" id="<?php echo esc_attr( $id ); ?>">
+        <div class="wp-tw-tabs <?php echo esc_attr( $id ); ?>" id="<?php echo esc_attr( $id ); ?>">
+            <script type="text/html" class="title-tpl">
+                <?php echo $this->_tab_title(); ?>
+            </script>
+            <script type="text/html" class="settings-tpl">
+                <?php echo $this->_tab_content(); ?>
+            </script>
             <input class="current_active" name="<?php echo $this->get_field_name( 'current_active' ); ?>" type="hidden" value="<?php echo esc_attr( $instance['current_active'] ); ?>">
             <ul class="wp-tw-nav">
                 <li class="ui-state-disabled add-new-tab">
@@ -154,11 +160,6 @@ class WP_Tabbed_Widget extends WP_Widget {
                 ?>
             </div>
         </div>
-        <script type="text/javascript">
-            jQuery( document).ready( function( $ ){
-                new WP_Tabbed_Widget( "#<?php  echo esc_js( $id ); ?>" );
-            } );
-        </script>
         <?php
     }
 
@@ -244,6 +245,7 @@ class WP_Tabbed_Widget extends WP_Widget {
 
         ?>
         <div class="wp-tabbed-tabs">
+
             <ul class="wp-tabbed-nav">
                 <?php
 
@@ -334,7 +336,6 @@ class WP_Tabbed_Widget extends WP_Widget {
 
                 if ( isset( $wp_widget_factory->widgets[ $settings['widget_class'] ] ) ) {
                     $data = $wp_widget_factory->widgets[ $settings['widget_class'] ]->update( $data, array() );
-                    $data[ 'isset' ] = 1;
                     if ( $data[ 'title' ] == '' ){
                         $data['title'] = $wp_widget_factory->widgets[ $settings['widget_class'] ]->name;
                     }
@@ -343,6 +344,8 @@ class WP_Tabbed_Widget extends WP_Widget {
                 $instance['tabs'][ $k ]['widget_class'] = $settings['widget_class'];
                 $instance['tabs'][ $k ]['settings'] = $data;
             }
+        } else {
+
         }
 
         $instance['current_active'] = isset( $new_instance['current_active'] ) ? intval( $new_instance['current_active'] ) : 0;
