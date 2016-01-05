@@ -35,7 +35,10 @@ class WP_Tabbed {
 
     static function get_form_settings(  $widget_class , $data = array() ){
         $widget = false;
-        if ( is_string( $widget_class ) ) {
+        if ( $widget_class == '' ) {
+            return false;
+        }
+        if ( is_string( $widget_class ) && class_exists( $widget_class ) ) {
             $widget =  new $widget_class;
         } if ( is_object( $widget_class ) ) {
             $widget = $widget_class;
