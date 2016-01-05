@@ -12,8 +12,6 @@ define( 'WP_TABBED_WIDGET_URL', trailingslashit( plugins_url('', __FILE__) ) );
 define( 'WP_TABBED_WIDGET', trailingslashit( plugin_dir_path( __FILE__) ) );
 
 
-
-
 class WP_Tabbed {
 
     function __construct(){
@@ -352,14 +350,15 @@ class WP_Tabbed_Widget extends WP_Widget {
 
 } // class WP_Tabbed_Widget
 
+
 /**
  * Register WP_Tabbed_Widget widget
  */
 function wp_register_tabbed_widget() {
-    register_widget( 'WP_Tabbed_Widget' );
+    global $wp_widget_factory;
+    $wp_widget_factory->register( 'WP_Tabbed_Widget' );
 }
-add_action( 'widgets_init', 'wp_register_tabbed_widget' );
-
+add_action( 'widgets_init', 'wp_register_tabbed_widget', 99 );
 
 
 
