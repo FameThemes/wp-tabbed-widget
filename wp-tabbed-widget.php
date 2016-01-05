@@ -280,8 +280,12 @@ class WP_Tabbed_Widget extends WP_Widget {
                     $widget_class = isset( $data['widget_class'] ) ? $data['widget_class'] : false;
                     echo '<div class="wp-tabbed-cont tab-'.esc_attr( $k ).'">';
                     if ( isset( $wp_widget_factory->widgets[ $widget_class ] ) ) {
-                        $wp_widget_factory->widgets[ $widget_class ]->widget( $args ,  $data['settings'] );
-
+                        $widget_obj = $wp_widget_factory->widgets[ $widget_class ];
+                        $_args =  $args;
+                        $_args['before_widget'] = str_replace( $this->id_base, $widget_obj->widget_options['classname'] , $_args['before_widget'] );
+                        // echo esc_html( $_args['before_widget'] );
+                        $widget_obj->widget( $_args , $data['settings'] );
+                       // the_widget( $widget_class, $data['settings'], $args );
                     }
                     echo '</div>';
 
