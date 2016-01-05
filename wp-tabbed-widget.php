@@ -282,12 +282,7 @@ class WP_Tabbed_Widget extends WP_Widget {
                     $widget_class = isset( $data['widget_class'] ) ? $data['widget_class'] : false;
                     echo '<div class="wp-tabbed-cont tab-'.esc_attr( $k ).'">';
                     if ( isset( $wp_widget_factory->widgets[ $widget_class ] ) ) {
-                        $wp_widget_factory->widgets[ $widget_class ]->widget( array(
-                            'before_widget' => '',
-                            'before_title' => '<div class="tab-c-e-title">',
-                            'after_title' => '</div>',
-                            'after_widget' => '',
-                        ),  $data['settings'] );
+                        $wp_widget_factory->widgets[ $widget_class ]->widget( $args ,  $data['settings'] );
 
                     }
                     echo '</div>';

@@ -68,3 +68,12 @@
 .wp-tabbed-tabs .tab-c-e-title {
   display: none;
 }
+/* line 61, tabbed.scss */
+.wp-tabbed-tabs .widget-title {
+  display: none;
+}
+/* line 64, tabbed.scss */
+.wp-tabbed-tabs .widget {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
