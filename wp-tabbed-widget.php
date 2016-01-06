@@ -287,6 +287,9 @@ class WP_Tabbed_Widget extends WP_Widget {
                         $_args =  $args;
                         $_args['before_widget'] = str_replace( $this->id_base, $widget_obj->widget_options['classname'] , $_args['before_widget'] );
                         // echo esc_html( $_args['before_widget'] );
+                        $_args['before_title'] = '<h2 class="widget-title">';
+                        $_args['after_title']  = '</h2>';
+
                         $widget_obj->widget( $_args , $data['settings'] );
                        // the_widget( $widget_class, $data['settings'], $args );
                     }
