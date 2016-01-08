@@ -38,7 +38,6 @@ WP_Tabbed_Widget = function( tabs ){
                 var title = jQuery('input[id*="-title"]', tab ).val() || WP_Tabbed_Widget_Settings.untitled;
                 jQuery( '.wp-tw-label', nav ).text( title );
             }
-
         } );
 
     }
@@ -136,6 +135,10 @@ WP_Tabbed_Widget = function( tabs ){
             var l = jQuery( '.wp-tw-nav li.wp-tw-title', tabs ).length;
             set_active_to_index( 0 );
             jQuery( window).trigger( 'resize' );
+            if ( l <= 0 ){
+                jQuery( '.no-tabs', tabs).show();
+            }
+
         }
     } );
 
@@ -158,6 +161,8 @@ WP_Tabbed_Widget = function( tabs ){
         tab_content_change( tab_content );
         update_value( new_li, tab_content );
         new_li.trigger( 'click' );
+
+        jQuery( '.no-tabs', tabs).hide();
 
     } );
 

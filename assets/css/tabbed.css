@@ -1,22 +1,15 @@
-/* line 2, sass/tabbed.scss */
-.wp-tabbed-tabs {
-  border: 1px solid #ededed;
-}
 /* line 4, sass/tabbed.scss */
 .wp-tabbed-tabs .wp-tabbed-nav {
   margin: 0px;
   padding: 0px;
   list-style: none;
   font-size: 0px;
-  border-bottom: 1px solid #ededed;
-  display: flex;
+  display: block;
   width: 100%;
-  overflow: auto;
   max-width: 100%;
 }
-/* line 15, sass/tabbed.scss */
+/* line 12, sass/tabbed.scss */
 .wp-tabbed-tabs .wp-tabbed-nav li {
-  flex: 1 auto;
   list-style: none;
   margin: 0px;
   display: inline-block;
@@ -25,22 +18,31 @@
   background: #f5f5f5;
   vertical-align: middle;
   text-align: center;
-  border-right: 1px solid #ededed;
-  margin-bottom: -1px;
+  border: 1px solid #ededed;
+  margin-right: -1px;
+  border-bottom: 0px;
+  position: relative;
 }
-/* line 27, sass/tabbed.scss */
-.wp-tabbed-tabs .wp-tabbed-nav li:last-child {
-  border-right: 0px none;
-}
-/* line 30, sass/tabbed.scss */
+/* line 28, sass/tabbed.scss */
 .wp-tabbed-tabs .wp-tabbed-nav li.tab-active {
   background: #FFFFFF;
 }
-/* line 33, sass/tabbed.scss */
+/* line 30, sass/tabbed.scss */
+.wp-tabbed-tabs .wp-tabbed-nav li.tab-active:after {
+  background: #FFFFFF;
+  height: 1px;
+  width: 100%;
+  display: block;
+  position: absolute;
+  bottom: -1px;
+  z-index: 9;
+  content: " ";
+}
+/* line 41, sass/tabbed.scss */
 .wp-tabbed-tabs .wp-tabbed-nav li a {
   display: inline-block;
   font-size: 14px;
-  padding: 5px 15px;
+  padding: 10px 15px;
   width: 100%;
   max-width: 100%;
   height: 100%;
@@ -51,28 +53,29 @@
   text-overflow: ellipsis;
   text-decoration: none;
 }
-/* line 49, sass/tabbed.scss */
+/* line 57, sass/tabbed.scss */
 .wp-tabbed-tabs .wp-tabbed-contents {
+  border: 1px solid #ededed;
   padding: 10px;
   display: block;
 }
-/* line 52, sass/tabbed.scss */
+/* line 61, sass/tabbed.scss */
 .wp-tabbed-tabs .wp-tabbed-contents .wp-tabbed-cont {
   display: none;
 }
-/* line 54, sass/tabbed.scss */
+/* line 63, sass/tabbed.scss */
 .wp-tabbed-tabs .wp-tabbed-contents .wp-tabbed-cont.tab-active {
   display: block;
 }
-/* line 59, sass/tabbed.scss */
+/* line 68, sass/tabbed.scss */
 .wp-tabbed-tabs .tab-c-e-title {
   display: none;
 }
-/* line 62, sass/tabbed.scss */
+/* line 71, sass/tabbed.scss */
 .wp-tabbed-tabs .widget-title {
   display: none;
 }
-/* line 65, sass/tabbed.scss */
+/* line 74, sass/tabbed.scss */
 .wp-tabbed-tabs .widget {
   margin-bottom: 0px;
   margin-top: 0px;

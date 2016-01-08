@@ -29,26 +29,38 @@
   background: #FAFAFA;
   float: left;
   position: relative;
+  position: relative;
 }
-/* line 28, sass/admin.scss */
+/* line 29, sass/admin.scss */
 .wp-tw-tabs .wp-tw-nav li:last-child {
   border-right: 1px solid #CCCCCC;
 }
-/* line 31, sass/admin.scss */
+/* line 34, sass/admin.scss */
+.wp-tw-tabs .wp-tw-nav li:before {
+  height: 1px;
+  width: 1px;
+  display: block;
+  content: ' ';
+  position: absolute;
+  background: #CCCCCC;
+  bottom: -1px;
+  left: -1px;
+}
+/* line 45, sass/admin.scss */
 .wp-tw-tabs .wp-tw-nav li .dashicons {
   vertical-align: middle;
 }
-/* line 34, sass/admin.scss */
+/* line 48, sass/admin.scss */
 .wp-tw-tabs .wp-tw-nav li.add-new-tab {
   cursor: pointer;
   float: right;
   margin-right: 0px;
 }
-/* line 39, sass/admin.scss */
+/* line 53, sass/admin.scss */
 .wp-tw-tabs .wp-tw-nav li.wp-tw-title {
   padding-right: 30px;
 }
-/* line 41, sass/admin.scss */
+/* line 55, sass/admin.scss */
 .wp-tw-tabs .wp-tw-nav li.wp-tw-title a {
   display: inline-block;
   height: 22px;
@@ -60,20 +72,20 @@
   text-decoration: none;
   color: #f93218;
 }
-/* line 51, sass/admin.scss */
+/* line 65, sass/admin.scss */
 .wp-tw-tabs .wp-tw-nav li.wp-tw-title a.wp-tw-remove {
   top: 4px;
 }
-/* line 57, sass/admin.scss */
+/* line 71, sass/admin.scss */
 .wp-tw-tabs .wp-tw-nav li span {
   display: inline-block;
 }
-/* line 61, sass/admin.scss */
+/* line 75, sass/admin.scss */
 .wp-tw-tabs .wp-tw-nav li.nav-active {
   background: #FFFFFF;
   border-bottom-color: #FFFFFF;
 }
-/* line 69, sass/admin.scss */
+/* line 83, sass/admin.scss */
 .wp-tw-tabs .wp-tw-tab-content {
   padding: 10px;
   border-left: 1px solid #CCCCCC;
@@ -81,17 +93,38 @@
   border-right: 1px solid #CCCCCC;
   display: none;
 }
-/* line 75, sass/admin.scss */
+/* line 89, sass/admin.scss */
 .wp-tw-tabs .wp-tw-tab-content.tab-active {
   display: block;
 }
-/* line 78, sass/admin.scss */
+/* line 92, sass/admin.scss */
 .wp-tw-tabs .wp-tw-tab-content::after {
   clear: both;
   content: " ";
   display: block;
 }
-/* line 82, sass/admin.scss */
+/* line 96, sass/admin.scss */
 .wp-tw-tabs .tabbed-widget-settings {
   clear: both;
+}
+/* line 100, sass/admin.scss */
+.wp-tw-tabs .no-tabs {
+  border-left: 1px solid #CCCCCC;
+  border-bottom: 1px solid #CCCCCC;
+  border-right: 1px solid #CCCCCC;
+  padding: 15px 10px 10px;
+}
+/* line 106, sass/admin.scss */
+.wp-tw-tabs .not-settings {
+  margin-top: 15px;
+}
+/* line 109, sass/admin.scss */
+.wp-tw-tabs .warning {
+  background: #fcf8e3;
+  border: 1px solid #faebcc;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: #8a6d3b;
+  padding: 15px;
 }
