@@ -1,6 +1,3 @@
-/**
- * Created by truongsa on 1/4/16.
- */
 
 var WP_Tabbed_Widget;
 WP_Tabbed_Widget = function( tabs ){

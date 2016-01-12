@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: shrimp2t
+Contributors: famethemes
 Donate link: http://www.famethemes.com/
 Tags: tabs, tab, tabbed, widget, responsive, sortable, drag
 Requires at least: 4.4

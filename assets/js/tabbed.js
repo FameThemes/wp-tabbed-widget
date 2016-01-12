@@ -1,6 +1,4 @@
-/**
- * Created by truongsa on 1/5/16.
- */
+
 jQuery( document ).ready( function( $ ) {
 
     $( '.wp-tabbed-tabs').each( function(){
