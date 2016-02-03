@@ -1,16 +1,18 @@
 <?php
 /*
-Plugin Name: WP Tabbed Widget
-Plugin URI: http://famethemes.com
-Description:
-Version: 1.0
-Author: FameThemes
-Author URI: http://famethemes.com
-*/
+ * Plugin Name: WP Tabbed Widget by FameThemes.com
+ * Plugin URI: https://www.famethemes.com
+ * Description: Display all your favorites widgets into a tabbed style widget.
+ * Author: FameThemes
+ * Version: 1.0.0
+ * Author URI: https://www.famethemes.com
+ * License: GPL2+
+ * Text Domain: wp-tabbed-widget
+ * Domain Path: /languages/
+ */
 
 define( 'WP_TABBED_WIDGET_URL', trailingslashit( plugins_url('', __FILE__) ) );
 define( 'WP_TABBED_WIDGET', trailingslashit( plugin_dir_path( __FILE__) ) );
-
 
 add_action( 'plugins_loaded', 'wp_tabbed_load_textdomain' );
 /**
@@ -30,7 +32,6 @@ if ( ! class_exists( 'WP_Tabbed_Helper' ) ) {
         function __construct()
         {
             add_action('wp_ajax_wp_tabbed_get_settings_form', array(__CLASS__, 'ajax_form'));
-            //add_action( 'wp_ajax_wp_tabbed_get_settings_form', array( __CLASS__ , 'get_settings_form' ) );
         }
 
         public static function ajax_form()
@@ -50,7 +51,6 @@ if ( ! class_exists( 'WP_Tabbed_Helper' ) ) {
             } else {
                 echo apply_filters('wp_tabbed_tab_settings', $settings);
             }
-
 
             die();
             // wp_die(); // this is required to terminate immediately and return a proper response
@@ -424,8 +424,3 @@ if ( ! class_exists( 'WP_Tabbed_Widget' ) ) {
     add_action('widgets_init', 'wp_register_tabbed_widget', 100 );
 
 }
-
-
-
-
-

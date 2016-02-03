@@ -1,39 +1,28 @@
 === Plugin Name ===
 Contributors: famethemes
-Donate link: http://www.famethemes.com/
+Donate link: https://www.famethemes.com/
 Tags: tabs, tab, tabbed, widget, responsive, sortable, drag
 Requires at least: 4.4
 Tested up to: 4.4.1
-Stable tag: 1.0
+Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-WP Tabbed plugin is the only plugin you need to get the perfect tabs on your website.
+Display all your favorites widgets into a tabbed style widget.
 
 == Description ==
 
+Display all your favorites widgets into a tabbed style widget.
 
-**WP Tabbed plugin** is the only plugin you need to get the perfect tabs on your website.
+Plugin features:
 
-
-Why WP Tabbed from FameThemes:
-
-* Choose any widgets to add your tabs
+* Add any core widgets to your tabs
+* Add any theme custom widgets to your tabs
 * Fully Responsive
 * Drag to sort tabs
 * Unlimited  number of tabs to show
 * Easy to modify the CSS to better fit your theme style
 * Position it anywhere where a widget is configured in your theme.
-
-= Help to make it better =
-
-FameThemes is a premium WordPress theme provider and we develop premium plugins in our free time and distribute them for free to give back to the community. Though we take a lot of care while developing anything, we might have missed something useful/important. Please help us make it better by submitting the bug/suggestions/feedback.
-
-
-= Live Demos =
-
-See WP Tab Widget in action on our demo pages:
-[http://demo.famethemes.com/wp-tabbed-widget/](demo.famethemes.com/wp-tabbed-widget/)
 
 
 == Screenshots ==
@@ -41,14 +30,28 @@ See WP Tab Widget in action on our demo pages:
 1. Widget backend settings.
 2. Front-end.
 
-
 == Installation ==
 
-1. Upload the Tabby Responsive Tabs plugin folder to your '/wp-content/plugins/' directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
+This section describes how to install the plugin and get it working.
 
+1. Upload the `wp-tab-widget` folder to the to the `/wp-content/plugins/` directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. You can see **WP Tabbed Widget by FameThemes.com** widget in widgets section.
+4. Add it in sidebar and footer and configure as you want.
+5. Enjoy!
+
+== Frequently Asked Questions ==
+
+= Plugin is not working =
+
+Please disable all plugins and check if WP Tabbed Widget plugin is working properly. Then you can enable all plugins one by one to find out which plugin is conflicting with plugin.
 
 == Changelog ==
 
 = 1.0 =
-* Release.
+* First release!
+
+== Upgrade Notice ==
+
+= 1.0 =
+* First release!
