@@ -34,7 +34,7 @@ Plugin features:
 
 This section describes how to install the plugin and get it working.
 
-1. Upload the `wp-tab-widget` folder to the to the `/wp-content/plugins/` directory
+1. Upload the `wp-tabbed-widget` folder to the to the `/wp-content/plugins/` directory
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. You can see **WP Tabbed Widget by FameThemes.com** widget in widgets section.
 4. Add it in sidebar and footer and configure as you want.
