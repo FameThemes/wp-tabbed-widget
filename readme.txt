@@ -23,6 +23,10 @@ Plugin features:
 * Unlimited  number of tabs to show
 * Position it anywhere where a widget is configured in your theme.
 
+= Dedicated Support =
+All support for this plugin is provided through our ticket system. If you have not registered yet, you can do so here for FREE
+[http://famethemes.com/dashboard/tickets/](http://famethemes.com/dashboard/tickets/)
+
 
 == Screenshots ==
 
