@@ -21,7 +21,6 @@ Plugin features:
 * Fully Responsive
 * Drag to sort tabs
 * Unlimited  number of tabs to show
-* Easy to modify the CSS to better fit your theme style
 * Position it anywhere where a widget is configured in your theme.
 
 
