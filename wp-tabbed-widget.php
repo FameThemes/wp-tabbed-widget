@@ -1,10 +1,10 @@
 <?php
 /*
- * Plugin Name: WP Tabbed Widget by FameThemes.com
+ * Plugin Name: WP Tabbed Widget
  * Plugin URI: https://www.famethemes.com
  * Description: Display all your favorites widgets into a tabbed style widget.
  * Author: FameThemes
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author URI: https://www.famethemes.com
  * License: GPL2+
  * Text Domain: wp-tabbed-widget

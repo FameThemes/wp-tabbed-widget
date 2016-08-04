@@ -1,10 +1,10 @@
 === Plugin Name ===
-Contributors: famethemes
+Contributors: famethemes, shrimp2t
 Donate link: https://www.famethemes.com/
 Tags: tabs, tab, tabbed, widget, responsive, sortable, drag
 Requires at least: 4.4
 Tested up to: 4.4.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,7 +25,7 @@ Plugin features:
 
 = Dedicated Support =
 All support for this plugin is provided through our ticket system. If you have not registered yet, you can do so here for FREE
-[http://famethemes.com/dashboard/tickets/](http://famethemes.com/dashboard/tickets/)
+[https://www.famethemes.com/dashboard/tickets/](https://www.famethemes.com/dashboard/tickets/)
 
 
 == Screenshots ==
