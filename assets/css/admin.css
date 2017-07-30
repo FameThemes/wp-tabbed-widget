@@ -149,7 +149,9 @@
     padding: 0px !important;
     border: 0px !important;
 }
-
+.wp-tw-tab-content .spinner{
+    display: none;
+}
 
 /* Customizer */
 .customize-control-widget_form.wide-widget-control .wp-tw-tabs .widget-inside {
