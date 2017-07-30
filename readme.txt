@@ -52,6 +52,8 @@ Please disable all plugins and check if WP Tabbed Widget plugin is working prope
 == Changelog ==
 = 1.0.2 =
 * Improve and fix bug for WP 4.8
+* Support Page Builder by SiteOrigin.
+* Support live customize.
 
 = 1.0 =
 * First release!
