@@ -16,12 +16,17 @@ Display all your favorites widgets into a tabbed style widget.
 
 Plugin features:
 
-* Add any core widgets to your tabs
-* Add any theme custom widgets to your tabs
-* Fully Responsive
-* Drag to sort tabs
-* Unlimited  number of tabs to show
+* Add any core widgets to your tabs.
+* Add any theme custom widgets to your tabs.
+* Support any themes.
+* Fully Responsive.
+* Drag to sort tabs.
+* Unlimited  number of tabs to show.
 * Position it anywhere where a widget is configured in your theme.
+* No shortcode required.
+* Support Page Builder by SiteOrigin.
+* Support live customize.
+
 
 = Dedicated Support =
 All support for this plugin is provided through our ticket system. If you have not registered yet, you can do so here for FREE
