@@ -74,6 +74,11 @@
 
 .wp-tw-tabs .wp-tw-nav li.wp-tw-title a.wp-tw-remove {
 	top: 4px;
+    border-radius: 50%;
+}
+.wp-tw-tabs .wp-tw-nav li.wp-tw-title a.wp-tw-remove:hover {
+    background: red;
+    color: #ffffff;
 }
 
 .wp-tw-tabs .wp-tw-nav li span {
@@ -126,4 +131,22 @@
 	border-radius: 4px;
 	color: #8a6d3b;
 	padding: 15px;
+}
+
+.tabbed-widget-settings.widget .widget-inside {
+    display: block !important;
+    padding: 0px !important;
+    border: 0px !important;
+}
+
+
+/* Customizer */
+.customize-control-widget_form.wide-widget-control .wp-tw-tabs .widget-inside {
+    position: relative;
+    top: auto !important;
+    left: auto !important;
+}
+
+.customize-control-widget_form.wide-widget-control .wp-tw-tabs .widget-inside > .form {
+    padding: 0px;
 }

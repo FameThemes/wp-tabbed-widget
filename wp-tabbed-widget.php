@@ -4,7 +4,7 @@
  * Plugin URI: https://www.famethemes.com
  * Description: Display all your favorites widgets into a tabbed style widget.
  * Author: FameThemes
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author URI: https://www.famethemes.com
  * License: GPL2+
  * Text Domain: wp-tabbed-widget
@@ -49,7 +49,7 @@ if ( ! class_exists( 'WP_Tabbed_Helper' ) ) {
                 <div class="warning not-settings"><?php _e('Select widget to show settings', 'wp-tabbed-widget'); ?></div>
             <?php
             } else {
-                echo apply_filters('wp_tabbed_tab_settings', $settings);
+                    echo apply_filters('wp_tabbed_tab_settings', $settings);
             }
 
             die();
@@ -74,12 +74,27 @@ if ( ! class_exists( 'WP_Tabbed_Helper' ) ) {
             }
 
             $widget->number = uniqid();
-            $widget->id_base = 'tab-anonymous';
+            //$widget->id_base = 'tab-anonymous';
 
             ob_start();
             ob_end_clean();
             ob_start();
+
+           // echo '<div id="'.esc_attr( uniqid( 'tabw-' ) ).'" class="widget">';
+            echo '<div class="widget-inside">';
+            echo '<div class="form">';
+            echo '<div class="widget-content">';
+
             $widget->form($data);
+            echo '</div>';
+
+            echo '<input type="hidden" class="id_base" value="'.esc_attr( $widget->id_base ).'">';
+            echo '<input type="hidden" class="widget-id" value="'.esc_attr( uniqid( 'tab-' ) ).'">';
+            echo '</div>';
+            echo '</div>';
+            //echo '</div>';
+
+
             $form = ob_get_clean();
 
             return $form;
@@ -193,15 +208,18 @@ if ( ! class_exists( 'WP_Tabbed_Widget' ) ) {
                     </div>
 
                 <?php } ?>
+                <div class="wrapper">
+                    <div class="wp-tw-tab-contents">
+                        <?php
+                        if ($tabs_html) {
 
-                <div class="wp-tw-tab-contents">
-                    <?php
-                    if ($tabs_html) {
-                        echo apply_filters('wp_tabbed_settings_tabs', $tabs_html, $instance);
-                    } else {
+                            echo apply_filters('wp_tabbed_settings_tabs', $tabs_html, $instance);
 
-                    }
-                    ?>
+                        } else {
+
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         <?php
@@ -253,7 +271,7 @@ if ( ! class_exists( 'WP_Tabbed_Widget' ) ) {
                 </select>
                 <span class="spinner"></span>
 
-                <div class="tabbed-widget-settings">
+                <div class="tabbed-widget-settings widget">
                     <?php
                     if ($widget_class != '') {
                         echo WP_Tabbed_Helper::get_form_settings($widget_class, $data);

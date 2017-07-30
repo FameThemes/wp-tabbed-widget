@@ -50,6 +50,8 @@ This section describes how to install the plugin and get it working.
 Please disable all plugins and check if WP Tabbed Widget plugin is working properly. Then you can enable all plugins one by one to find out which plugin is conflicting with plugin.
 
 == Changelog ==
+= 1.0.2 =
+* Improve and fix bug for WP 4.8
 
 = 1.0 =
 * First release!
