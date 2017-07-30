@@ -130,6 +130,11 @@
         jQuery( ".wp-tw-nav", tabs ).sortable( {
             containment: "parent",
             items: "li:not(.ui-state-disabled)",
+            change: function( event, ui ) {
+                // Trigger change to show save button in customizer
+                var base_id =  new Date().getTime();
+                $( '.base_tab_id', tabs ).val( base_id ).trigger( 'change' );
+            }
         });
 
         // Remove tab
@@ -146,6 +151,10 @@
                 if ( l <= 0 ){
                     jQuery( '.no-tabs', tabs).show();
                 }
+
+                // Trigger change to show save button in customizer
+                var base_id =  new Date().getTime();
+                $( '.base_tab_id', tabs ).val( base_id ).trigger( 'change' );
 
             }
         } );
@@ -169,9 +178,6 @@
             tab_content_change( tab_content );
             update_value( new_li, tab_content );
             new_li.trigger( 'click' );
-
-
-
 
             jQuery( '.no-tabs', tabs).hide();
 

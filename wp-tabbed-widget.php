@@ -170,6 +170,7 @@ if ( ! class_exists( 'WP_Tabbed_Widget' ) ) {
             $tabs_html = '';
 
             ?>
+
             <p>
                 <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'wp-coupon'); ?></label>
                 <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text"
@@ -177,6 +178,8 @@ if ( ! class_exists( 'WP_Tabbed_Widget' ) ) {
             </p>
 
             <div class="wp-tw-tabs <?php echo esc_attr($id); ?>" id="<?php echo esc_attr($id); ?>">
+                <input class="base_tab_id" id="<?php echo $this->get_field_id('base_tab_id'); ?>" name="<?php echo $this->get_field_name('base_tab_id'); ?>" type="hidden" value="<?php echo esc_attr( time() ); ?>">
+
                 <script type="text/html" class="title-tpl">
                     <?php echo $this->_tab_title(); ?>
                 </script>
@@ -402,9 +405,16 @@ if ( ! class_exists( 'WP_Tabbed_Widget' ) ) {
 
                     $data = array();
 
-                    foreach ($keys as $key) {
-                        if (isset($settings[$key])) {
-                            $data = current($settings[$key]);
+                    foreach ( ( array ) $keys as $key) {
+                        if (isset( $settings[$key] ) ) {
+
+                            $s = $settings[$key];
+                            if ( is_array( $s ) ) {
+                                $data = current( $s );
+                            } else {
+                                $data = array();
+                            }
+
                         }
                     }
 
